@@ -57,5 +57,108 @@ class taskController{
         res.send({"message":"no data found"})
       }
     }
+
+    //get task list for graph
+    static taskListForGraph=async(req,res)=>{
+      const data=await taskModel.find()
+      if(data)
+      {
+        
+        var info=[
+          {
+             month:"January",
+             incomplete:0,
+             complete:0
+          },
+          {
+            month:"February",
+            incomplete:0,
+            complete:0
+         },
+         {
+          month:"March",
+          incomplete:0,
+          complete:0
+         },
+         {
+          month:"April",
+          incomplete:0,
+          complete:0
+          },
+          {
+            month:"May",
+            incomplete:0,
+            complete:0
+           },
+           {
+            month:"Jun",
+            incomplete:0,
+            complete:0
+           },
+           {
+            month:"July",
+            incomplete:0,
+            complete:0
+           },
+           {
+            month:"August",
+            incomplete:0,
+            complete:0
+           },
+           {
+            month:"September",
+            incomplete:0,
+            complete:0
+           },
+           {
+            month:"October",
+            incomplete:0,
+            complete:0
+           },
+           {
+            month:"November",
+            incomplete:0,
+            complete:0
+           },
+           {
+            month:"December",
+            incomplete:0,
+            complete:0
+           },
+
+       ] 
+
+
+      for(var i=0;i<data.length;i++)
+      {
+        
+          const date = new Date(data[i].task_Date);  // 2022-10-25
+          const month = date.toLocaleString('default', { month: 'long' });
+        
+          for(var j=0;j<info.length;j++)
+           {
+              if(month==info[j].month) 
+              {
+                if(data[i].status==='complete')
+                {
+                  info[j].complete=info[j].complete+1 
+                }
+                else if(data[i].status==='incomplete')
+                {
+                  info[j].incomplete=info[j].incomplete+1 
+                }
+              }
+           }
+
+      }
+     
+
+         
+          res.send({"message":"success","data":info})
+      }
+      else{
+        res.send({"message":"no data found"})
+      }
+    }
 }
 export default taskController;

@@ -9,5 +9,6 @@ router.post('/addTask',taskController.addTask);
 router.delete('/deleteTask/:task_Id',taskController.deleteTask);
 router.post('/updateTask/:task_Id',taskController.updateTask);
 router.get('/getAllTask',taskController.taskList);
+router.get('/taskList',taskController.taskListForGraph);
 
 export default router;
