@@ -10,7 +10,7 @@ import taskRoutes from "./routes/taskRoutes.js"
 
 const app=express()
 const port=process.env.PORT;
-const database_url=process.env.DATABASE_URL_Local;
+const database_url=process.env.DATABASE_URL;
 //cores policy
 app.use(cors())
 
